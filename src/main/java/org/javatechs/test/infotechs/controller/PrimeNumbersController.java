@@ -35,8 +35,10 @@ public class PrimeNumbersController {
 	@ResponseBody
 	@Cacheable("prime_number_mult_cache")
 	public Map<String, Object> calculate(@RequestParam Long input) {
+		log.debug("==> Input: "+input);
 		Map<String, Object> result = new HashMap<>();
 		try {
+			if(input <= 1) throw new RuntimeException("Input can`t be <= 1");
 			result.put("result", numberService.process(input));
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);

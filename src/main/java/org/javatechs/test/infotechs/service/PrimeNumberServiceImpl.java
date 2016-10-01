@@ -1,12 +1,19 @@
 package org.javatechs.test.infotechs.service;
 
+import org.javatechs.test.infotechs.controller.PrimeNumbersController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Gleb on 01.10.2016.
  */
+@Service
 public class PrimeNumberServiceImpl implements PrimeNumberService {
+	private static Logger log = LoggerFactory.getLogger(PrimeNumbersController.class);
 	private static int[]
 			primeTable = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
 			97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
@@ -36,6 +43,7 @@ public class PrimeNumberServiceImpl implements PrimeNumberService {
 			long l = input % k;
 			if (l == 0) {
 				result.add(k);
+				log.debug("==> Multiplyer finded: " + k);
 				long val = input / k;
 				if (val == 1) {
 					return;
